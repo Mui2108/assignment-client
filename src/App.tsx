@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.scss";
+import { Routes, Route } from "react-router-dom";
+import Layouts from "./layouts/Layouts";
+import { routers } from "./routers/index";
+import Login from "./pages/login/login";
+import NoMatch from "./components/NoMatch";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path="/" element={<Layouts />}>
+          {routers.map((item, idx) =>
+            item.path === "/" ? (
+              <Route index element={item.component} key={item.name + idx} />
+            ) : (
+              <Route
+                path={item.path}
+                element={item.component}
+                key={item.name + idx}
+              />
+            )
+          )}
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NoMatch />} />
+      </Routes>
     </div>
   );
 }
