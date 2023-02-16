@@ -1,25 +1,43 @@
-import { Avatar, Col, Layout, Row } from "antd";
-import React from "react";
-interface Props {
-  style?: React.CSSProperties;
-}
+import { Avatar, Button, Layout } from "antd";
+import dayjs from "dayjs";
+import { useState, useEffect } from "react";
+import { RiUser3Line } from "react-icons/ri";
 
-const Header = ({ style }: Props) => {
+const format = "ddd DD MMM YYYY HH:mm";
+const Header = () => {
+  const [today, setDate] = useState(dayjs().format(format));
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDate(dayjs().format(format));
+    }, 60 * 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
-    <Layout.Header style={style}>
-      <Row justify={"space-between"}>
-        <div></div>
-        <div>
-          <Row gutter={12}>
-            <Col>
-              <Avatar />
-            </Col>
-            <Col>
-              <p style={{ margin: 0 }}>Admin Property</p>
-            </Col>
-          </Row>
+    <Layout.Header
+      className="top-layout"
+      style={{ padding: 14, height: "100%" }}
+    >
+      <div className="header-layout">
+        <div className="user-layout-info">
+          <Avatar size={50} icon={<RiUser3Line />} />
+          <div>
+            <p>Miss Lorem Ipsumlorem</p>
+            <p>Maid : Men floor 6</p>
+          </div>
         </div>
-      </Row>
+        <div>
+          <p className="time-today-layout">{today} </p>
+        </div>
+        <div>
+          <Button type="primary" className="login-layout-btn">
+            Login
+          </Button>
+        </div>
+      </div>
     </Layout.Header>
   );
 };

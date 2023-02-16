@@ -1,6 +1,11 @@
-@use 'styles/_colors.scss'; // assuming a styles directory under src/
+@use "assets/font/stylesheet.css";
+@use "styles/index.scss"; // assuming a styles directory under src/
 
-button{
-    background-color: aqua;
-    width: 150px;
+* {
+  font-family: "Prompt-Regular", sans-serif;
+}
+
+body,
+html {
+  height: 100%;
 }

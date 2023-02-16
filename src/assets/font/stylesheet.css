@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'Prompt-Black';
+    src: url('Prompt-Black.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Prompt-Light';
+    src: url('Prompt-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Prompt-Bold';
+    src: url('Prompt-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Prompt-Medium';
+    src: url('Prompt-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Prompt-Regular';
+    src: url('Prompt-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Prompt-SemiBold';
+    src: url('Prompt-SemiBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

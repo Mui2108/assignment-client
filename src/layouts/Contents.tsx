@@ -6,7 +6,7 @@ interface Props {
 const { Content } = Layout;
 const Contents = ({ style }: Props) => {
   return (
-    <Content style={style}>
+    <Content style={style} className="content-layout">
       <Outlet />
     </Content>
   );

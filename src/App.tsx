@@ -1,9 +1,10 @@
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
-import Layouts from "./layouts/Layouts";
-import { routers } from "./routers/index";
-import Login from "./pages/login/login";
-import NoMatch from "./components/NoMatch";
+
+import Layouts from "@layouts/Layouts";
+import NoMatch from "@components/NoMatch";
+import Login from "@pages/login/login";
+import { routers } from "./routers";
 function App() {
   return (
     <div>

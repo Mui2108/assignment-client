@@ -1,0 +1,42 @@
+@import "colors";
+
+main.ant-layout-content.content-layout {
+    background-color: $background;
+}
+header.ant-layout-header.top-layout {
+    background-color: $background;
+}
+.header-layout {
+    background-color: $primary;
+    border-radius: 20px;
+    padding: 0 16px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-layout-info {
+    display: flex;
+    align-items: center;
+    p {
+        margin: 0;
+        line-height: 1rem;
+        padding-left: 12px;
+        color: white;
+        font-size: 1rem;
+    }
+}
+
+.time-today-layout {
+    color: white;
+    font-size: 1rem;
+}
+
+button.ant-btn.ant-btn-primary.login-layout-btn {
+    background-color: $second;
+    border-radius: 10px;
+    padding: 0 24px;
+    height: 2rem;
+    font-size: 1rem;
+}
