@@ -34,7 +34,12 @@ const Dropdown = ({
       }
     >
       <div className="dropdown-organiz">
-        <p>{value ? findItem() : placeholder}</p>
+        {value ? (
+          <p style={{ color: "white" }}>{findItem()}</p>
+        ) : (
+          <p>{placeholder}</p>
+        )}
+
         <AiFillCaretDown className={calss} />
       </div>
     </Option>
