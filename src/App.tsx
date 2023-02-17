@@ -1,14 +1,17 @@
 import "./App.scss";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 import Layouts from "@layouts/Layouts";
 import NoMatch from "@components/NoMatch";
 import Login from "@pages/login/login";
 import { routers } from "./routers";
+import { _isEmpty } from "@tools/util";
+
 function App() {
   return (
     <div>
       <Routes>
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Layouts />}>
           {routers.map((item, idx) =>
             item.path === "/" ? (
@@ -22,7 +25,6 @@ function App() {
             )
           )}
         </Route>
-        <Route path="/login" element={<Login />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>
