@@ -10,7 +10,7 @@ yarn install
 set .env
 
 ```sh
-REACT_APP_API_URL=http://localhost:3000
+REACT_APP_API_URL=http://localhost:2000
 ```
 
 How to run:
