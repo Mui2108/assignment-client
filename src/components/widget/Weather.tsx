@@ -18,7 +18,11 @@ const Weather = () => {
           <div
             style={{ display: "flex", alignItems: "center", height: "100%" }}
           >
-            <img src={cloudy} style={{ width: "55%", margin: "0 25px" }} />
+            <img
+              src={cloudy}
+              style={{ width: "55%", margin: "0 25px" }}
+              alt="cloudy"
+            />
           </div>
           <p
             style={{
