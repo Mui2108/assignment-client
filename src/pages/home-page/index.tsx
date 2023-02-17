@@ -29,12 +29,13 @@ const menuButton = [
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [isLoad, setIsload] = useState(false);
+
   const [timeline, setTimeline] = useState<ITimeline[]>([]);
   const [temperature, setTemperature] = useState<ITemperature>({
     humidity: 0,
     temp: 0,
   });
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (_isEmpty(token)) {
@@ -47,7 +48,6 @@ const HomePage = () => {
 
   const getTemperature = async () => {
     try {
-      setIsload(true);
       const res = await GET_TEMPERATURE();
       if (res.code === 200) {
         setTemperature(res.result);
@@ -61,14 +61,11 @@ const HomePage = () => {
       notification.info({
         message: "Internal server error",
       });
-    } finally {
-      setIsload(false);
     }
   };
 
   const getTimeline = async () => {
     try {
-      setIsload(true);
       const res = await GET_TIMELINE();
       if (res.code === 200) {
         setTimeline(res.result);
@@ -82,8 +79,6 @@ const HomePage = () => {
       notification.info({
         message: "Internal server error",
       });
-    } finally {
-      setIsload(false);
     }
   };
 
