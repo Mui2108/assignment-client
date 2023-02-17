@@ -112,3 +112,20 @@ ul.ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropd
     transform: translateY(-2px);
   }
 }
+
+.btn-number {
+  background-color: white;
+  color: #0d152d;
+  font-size: 2vw;
+  text-align: center;
+  width: 4vw;
+  height: 4vw;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.281);
+  }
+}
