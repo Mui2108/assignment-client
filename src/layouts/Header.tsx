@@ -1,3 +1,4 @@
+import { IUserInfo } from "@services/interfaces/login";
 import { Avatar, Button, Layout } from "antd";
 import dayjs from "dayjs";
 import { useState, useEffect } from "react";
@@ -6,8 +7,11 @@ import { RiUser3Line } from "react-icons/ri";
 const format = "ddd DD MMM YYYY HH:mm";
 const Header = () => {
   const [today, setDate] = useState(dayjs().format(format));
-
+  const [user, setUser] = useState<IUserInfo>();
   useEffect(() => {
+    const dataUser = localStorage.getItem("user");
+    if (dataUser) setUser(JSON.parse(dataUser));
+
     const timer = setInterval(() => {
       setDate(dayjs().format(format));
     }, 60 * 1000);
@@ -23,10 +27,14 @@ const Header = () => {
     >
       <div className="header-layout">
         <div className="user-layout-info">
-          <Avatar size={50} icon={<RiUser3Line />} />
+          <Avatar size={50} icon={<RiUser3Line />} src={user?.profile} />
           <div>
-            <p>Miss Lorem Ipsumlorem</p>
-            <p>Maid : Men floor 6</p>
+            <p>
+              {user?.prefix} {user?.name}
+            </p>
+            <p>
+              {user?.position} :{user?.part}
+            </p>
           </div>
         </div>
         <div>
