@@ -1,5 +1,6 @@
+import Password from "@components/Password";
 import { IUserInfo } from "@services/interfaces/login";
-import { Avatar, Button, Layout } from "antd";
+import { Avatar, Layout } from "antd";
 import dayjs from "dayjs";
 import { useState, useEffect } from "react";
 import { RiUser3Line } from "react-icons/ri";
@@ -41,9 +42,7 @@ const Header = () => {
           <p className="time-today-layout">{today} </p>
         </div>
         <div>
-          <Button type="primary" className="login-layout-btn">
-            Login
-          </Button>
+          <Password onFinish={(val) => console.log(val)} />
         </div>
       </div>
     </Layout.Header>
