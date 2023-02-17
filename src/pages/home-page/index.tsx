@@ -1,7 +1,7 @@
 import StatusWork from "@components/widget/StatusWork";
 import Tewmperature from "@components/widget/Tewmperature";
 import Weather from "@components/widget/Weather";
-import { Card, Col, Row } from "antd";
+import { Card, Col, notification, Row } from "antd";
 import trashcan from "@assets/icons/trashcan.svg";
 import toiletPaper from "@assets/icons/toilet-paper.svg";
 import toiletBolw from "@assets/icons/toilet-bolw.svg";
@@ -10,32 +10,17 @@ import water from "@assets/icons/water.svg";
 import wetSign from "@assets/icons/wet-sign.svg";
 import document from "@assets/icons/document.svg";
 import nose from "@assets/icons/nose.svg";
-const timelimeStatu = [
-  {
-    name: "CURRENT",
-    service: 3,
-    urinal: 4,
-    toilet: 7,
-  },
-  {
-    name: "LAST CLEANING",
-    service: 3,
-    urinal: 4,
-    toilet: 7,
-  },
-  {
-    name: "COUNTING",
-    service: 3,
-    urinal: 4,
-    toilet: 7,
-  },
-];
+import { useEffect, useState } from "react";
+import { _isEmpty } from "@tools/util";
+import { useNavigate } from "react-router-dom";
+import { GET_TEMPERATURE, GET_TIMELINE } from "@services/api/timeline";
+import { ITemperature, ITimeline } from "@services/interfaces/timeline";
 
 const menuButton = [
   { name: "Trash Full", icon: trashcan },
   { name: "Tissue Paper", icon: toiletPaper },
   { name: "The water is not running", icon: water },
-  { name: "Smell", icon: trashcan },
+  { name: "Smell", icon: nose },
   { name: "Wet Floor", icon: wetSign },
   { name: "Flush Toilet", icon: toiletBolw },
   { name: "Urinal", icon: urinal },
@@ -43,6 +28,65 @@ const menuButton = [
 ];
 
 const HomePage = () => {
+  const navigate = useNavigate();
+  const [isLoad, setIsload] = useState(false);
+  const [timeline, setTimeline] = useState<ITimeline[]>([]);
+  const [temperature, setTemperature] = useState<ITemperature>({
+    humidity: 0,
+    temp: 0,
+  });
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (_isEmpty(token)) {
+      navigate("/login");
+    } else {
+      getTemperature();
+      getTimeline();
+    }
+  }, []);
+
+  const getTemperature = async () => {
+    try {
+      setIsload(true);
+      const res = await GET_TEMPERATURE();
+      if (res.code === 200) {
+        setTemperature(res.result);
+      } else {
+        notification.error({
+          message: "Can't ghet data",
+          duration: 3,
+        });
+      }
+    } catch (error) {
+      notification.info({
+        message: "Internal server error",
+      });
+    } finally {
+      setIsload(false);
+    }
+  };
+
+  const getTimeline = async () => {
+    try {
+      setIsload(true);
+      const res = await GET_TIMELINE();
+      if (res.code === 200) {
+        setTimeline(res.result);
+      } else {
+        notification.error({
+          message: "Can't ghet data",
+          duration: 3,
+        });
+      }
+    } catch (error) {
+      notification.info({
+        message: "Internal server error",
+      });
+    } finally {
+      setIsload(false);
+    }
+  };
+
   return (
     <div>
       <Row gutter={12}>
@@ -50,15 +94,18 @@ const HomePage = () => {
           <Weather />
         </Col>
         <Col span={16}>
-          <Tewmperature humidity={45} temperature={26} />
-          <StatusWork value={timelimeStatu} />
+          <Tewmperature
+            humidity={temperature.humidity}
+            temperature={temperature.temp}
+          />
+          <StatusWork value={timeline} />
         </Col>
       </Row>
 
       <Row gutter={12} style={{ marginTop: 12 }}>
         {menuButton.map((item, idx) => (
-          <Col span={6} style={{ padding: "6px 12px" }}>
-            <Card className="card-climate" style={{ margin: "0" }}>
+          <Col span={6} style={{ padding: "6px 12px" }} key={idx}>
+            <Card className="card-climate  card-item" style={{ margin: "0" }}>
               <div
                 style={{
                   display: "flex",
