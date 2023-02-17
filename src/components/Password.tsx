@@ -45,7 +45,7 @@ const Password = ({ onFinish }: Props) => {
         onOk={() => setVisible(false)}
         style={{ background: "#0D152D" }}
         onCancel={() => setVisible(false)}
-        width={"25%"}
+        width={300}
       >
         <p style={{ textAlign: "center", fontSize: "1.5vw" }}>Enter Password</p>
         <div className="input-password">
